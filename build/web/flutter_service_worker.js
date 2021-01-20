@@ -4,20 +4,27 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "75bb96495181caa6d0d7ffcad4ca3687",
-"index.html": "935b0230c037b3dfb2566396a3b34270",
-"/": "935b0230c037b3dfb2566396a3b34270",
-"main.dart.js": "cd1ab568d8a9676020422560e689e640",
+"index.html": "781baaeacee91e32e7a4ba526dae659e",
+"/": "781baaeacee91e32e7a4ba526dae659e",
+"main.dart.js": "57ac574fa735f7ec03f2810bbdb7fc5c",
 "404.html": "0a27a4163254fc8fce870c8cc3a3f94f",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "826ddf4be3b03fb558b0c4556bc8e1bb",
-"assets/AssetManifest.json": "886335305ed76f82529992478e53f2b8",
+"assets/images/arcore.png": "281e6bd0eee187d9209e0456b1544da5",
+"assets/images/worship_songs.png": "d76c140728d056f9037d8e62a4ea2920",
+"assets/images/wedbox.webp": "339fcf3e6d0c622b7dab1b9282b88747",
+"assets/images/even_logo.png": "b24f229010bfa398169bebd66b989d88",
+"assets/images/qink.png": "54d81ccc79238f95368a7b2227188089",
+"assets/AssetManifest.json": "55ebd0a66dfffac9cb460c9d9936bd5d",
 "assets/NOTICES": "489056b6d5c58912192215d53874f1c0",
-"assets/FontManifest.json": "2245b9b7761067b66d59a75401a7354f",
+"assets/FontManifest.json": "f874427b7c555421ccbc85fafaf08e72",
 "assets/fonts/WorkSans-Regular.ttf": "6f916ce8ada5d5facf5ad4e1266a486d",
 "assets/fonts/WorkSans-Light.ttf": "526a15477e60abaa9e94be1700a7423f",
+"assets/fonts/WorkSans-Medium.ttf": "38263ba46663a666f7730f69e804b028",
 "assets/fonts/WorkSans-Black.ttf": "1446e4f15dc4b7f83535267c78d35c3c",
-"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac"
+"assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
+"assets/fonts/WorkSans-Bold.ttf": "a0bf66dd6fc75494a0a51f7662a99c41"
 };
 
 // The application shell files that are downloaded before a service worker can

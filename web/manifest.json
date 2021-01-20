@@ -1,11 +1,11 @@
 {
-    "name": "nikilapi_web",
-    "short_name": "nikilapi_web",
+    "name": "nikilapi_cv",
+    "short_name": "nikilapi_cv",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Android Engineer",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

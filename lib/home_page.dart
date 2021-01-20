@@ -3,61 +3,123 @@ import 'dart:js' as js;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nikilapi_web/sections/working_experience.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                buildHeader(context),
-                Container(
-                  child: Row(
-                    children: [
-                      HoverButton(
-                        title: 'LinkedIn',
-                        link:
-                            'https://www.linkedin.com/in/nikita-lapin-b7a98615a/',
-                      ),
-                      SizedBox(width: 20),
-                      HoverButton(
-                        title: 'Twitter',
-                        link: 'https://twitter.com/nik_lapin_',
-                      ),
-                      SizedBox(width: 20),
-                      HoverButton(
-                        title: 'Instagram',
-                        link: 'https://www.instagram.com/nikilapi/',
-                      ),
-                    ],
-                  ),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                child: Wrap(
+                  runSpacing: 16,
+                  alignment: WrapAlignment.spaceBetween,
+                  children: [
+                    buildHeader(context),
+                    Wrap(
+                      children: [
+                        HoverButton(
+                          title: 'LinkedIn',
+                          link:
+                              'https://www.linkedin.com/in/nikita-lapin-b7a98615a/',
+                        ),
+                        SizedBox(width: 20),
+                        HoverButton(
+                          title: 'Twitter',
+                          link: 'https://twitter.com/nik_lapin_',
+                        ),
+                        SizedBox(width: 20),
+                        HoverButton(
+                          title: 'Instagram',
+                          link: 'https://www.instagram.com/nikilapi/',
+                        ),
+                        SizedBox(width: 20),
+                        HoverButton(
+                          title: 'Open CV in PDF',
+                          link:
+                              'https://drive.google.com/file/d/1b0NUQZZzA8zsfPgbO5ulGqSB6BSf5c3e/view?usp=sharing',
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            SizedBox(height: 200),
-            Text(
-              'Nikita Lapin',
-              style: Theme.of(context).textTheme.headline1,
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'Hello! I\'m mobile apps developer from Kharkiv, Ukraine 🇺🇦\n'
-              'I develop software 👨‍💻 for about 2.5 years\n'
-              'Could I help you to implement your idea? 😎',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-          ],
+              ),
+              SizedBox(height: 200),
+              SelectableText(
+                'Nikita Lapin',
+                style: Theme.of(context).textTheme.headline1,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              SelectableText(
+                'Hello! I\'m mobile apps developer from Kharkiv, Ukraine 🇺🇦\n'
+                'I develop software 👨‍💻 for ${_getExperience()} years\n'
+                'Could I help you to implement your idea? 😎\n',
+                style: Theme.of(context).textTheme.headline3,
+              ),
+              SizedBox(height: 30),
+              buildWorkingExperience(context),
+              // SizedBox(height: 300),
+              // SelectableText(
+              //   'Projects I\'ve worked on:',
+              //   style: Theme.of(context).textTheme.headline2,
+              // ),
+              // SizedBox(height: 16),
+              // WorkingExperienceSection(),
+              // SizedBox(height: 250),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  RichText buildWorkingExperience(BuildContext context) {
+    var baseTextStyle = Theme.of(context).textTheme.headline3.copyWith(
+          color: Colors.grey,
+          fontWeight: FontWeight.w400,
+        );
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: '[2019 - 2021]',
+            style: baseTextStyle.copyWith(fontWeight: FontWeight.w500),
+          ),
+          TextSpan(text: ' Java and Android developer at Qualium Systems Ltd.'),
+          TextSpan(text: '\n'),
+          TextSpan(
+            text: '[2021 - present]',
+            style: baseTextStyle.copyWith(fontWeight: FontWeight.w500),
+          ),
+          TextSpan(text: ' Android Engineer at N-ix')
+        ],
+        style: baseTextStyle,
+      ),
+    );
+  }
+
+  /// Calculates experience with step of 0.5 (ex. 2.3 years -> 2.5 is output)
+  String _getExperience() {
+    final originExperience =
+        ((DateTime.now().difference(DateTime(2018, 9, 1)).inDays / 365 * 2)
+                    .roundToDouble() /
+                2)
+            .toStringAsFixed(1);
+
+    if (originExperience.endsWith('0')) {
+      return originExperience.split('\.').first;
+    }
+
+    return originExperience;
   }
 
   MouseRegion buildHeader(BuildContext context) {
@@ -95,33 +157,44 @@ class _HoverButtonState extends State<HoverButton> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      hoverColor: Colors.transparent,
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onTap: () {
         js.context.callMethod(
           'open',
           [widget.link],
         );
       },
-      child: MouseRegion(
-        child: Column(
-          children: [
-            Text(
-              widget.title,
+      onHover: (value) {
+        setState(() {
+          _isHover = value;
+        });
+      },
+      child: Column(
+        children: [
+          Text(widget.title,
               style: Theme.of(context).textTheme.subtitle1.copyWith(
                     decoration: _isHover
                         ? TextDecoration.underline
                         : TextDecoration.none,
-                  ),
-            ),
-          ],
-        ),
-        onEnter: (event) => setState(() {
-          _isHover = true;
-        }),
-        onExit: (event) => setState(() {
-          _isHover = false;
-        }),
+                  )),
+        ],
       ),
     );
+  }
+
+  static bool isSmallScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width < 800;
+  }
+
+  static bool isLargeScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width > 1200;
+  }
+
+  static bool isMediumScreen(BuildContext context) {
+    return MediaQuery.of(context).size.width >= 800 &&
+        MediaQuery.of(context).size.width <= 1200;
   }
 }
