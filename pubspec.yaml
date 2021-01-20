@@ -1,0 +1,29 @@
+name: nikilapi_web
+description: Nikita Lapin Flutter website
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: WorkSans
+      fonts:
+        - asset: fonts/WorkSans-Regular.ttf
+        - asset: fonts/WorkSans-Black.ttf
+          weight: 900
+        - asset: fonts/WorkSans-Light.ttf
+          weight: 300
