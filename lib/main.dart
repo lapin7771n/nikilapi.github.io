@@ -18,14 +18,14 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           headline1: TextStyle(
             fontFamily: 'WorkSans',
-            height: 1.1,
+            height: 1.2,
             fontSize: 98,
             fontWeight: FontWeight.w900,
             color: const Color(0xFF001427),
           ),
           headline2: TextStyle(
             fontFamily: 'WorkSans',
-            height: 1.1,
+            height: 1.2,
             fontSize: 50,
             fontWeight: FontWeight.w700,
             color: const Color(0xFF001427),
@@ -35,6 +35,20 @@ class MyApp extends StatelessWidget {
             fontSize: 22,
             height: 1.4,
             color: const Color(0xFF001427),
+          ),
+          headline4: TextStyle(
+            fontFamily: 'WorkSans',
+            fontSize: 22,
+            height: 1.4,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF001427),
+          ),
+          bodyText1: TextStyle(
+            fontFamily: 'WorkSans',
+            fontSize: 16,
+            height: 1.2,
+            fontWeight: FontWeight.w400,
+            color: Colors.grey,
           ),
           bodyText2: TextStyle(
             fontFamily: 'WorkSans',

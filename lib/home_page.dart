@@ -1,5 +1,6 @@
 import 'dart:js' as js;
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -12,7 +13,10 @@ class HomePage extends StatelessWidget {
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).size.width / 8,
+            vertical: 50.0,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -51,7 +55,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 200),
+              SizedBox(height: 250),
               SelectableText(
                 'Nikita Lapin',
                 style: Theme.of(context).textTheme.headline1,
@@ -61,20 +65,47 @@ class HomePage extends StatelessWidget {
               ),
               SelectableText(
                 'Hello! I\'m mobile apps developer from Kharkiv, Ukraine 🇺🇦\n'
-                'I develop software 👨‍💻 for ${_getExperience()} years\n'
+                'I\'ve been developing software 👨‍💻 for ${_getExperience()} years\n'
                 'Could I help you to implement your idea? 😎\n',
                 style: Theme.of(context).textTheme.headline3,
               ),
               SizedBox(height: 30),
               buildWorkingExperience(context),
-              // SizedBox(height: 300),
-              // SelectableText(
-              //   'Projects I\'ve worked on:',
-              //   style: Theme.of(context).textTheme.headline2,
-              // ),
-              // SizedBox(height: 16),
-              // WorkingExperienceSection(),
-              // SizedBox(height: 250),
+              SizedBox(height: 300),
+              Center(
+                child: Column(
+                  children: [
+                    SelectableText(
+                      'Projects'.toUpperCase(),
+                      style: Theme.of(context).textTheme.headline1.copyWith(
+                            fontSize: 16,
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 22),
+                    SelectableText(
+                      'Review all my done works',
+                      style: Theme.of(context).textTheme.headline2.copyWith(
+                            fontSize: 42,
+                          ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 16),
+                    SelectableText(
+                      'Here are my projects for all these years. Some of them were my pet-projects.\n'
+                      'Some are for commercial usage.',
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline3
+                          .copyWith(color: Colors.grey),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 100),
+              WorkingExperienceSection(),
+              SizedBox(height: 250),
             ],
           ),
         ),
@@ -94,13 +125,27 @@ class HomePage extends StatelessWidget {
             text: '[2019 - 2021]',
             style: baseTextStyle.copyWith(fontWeight: FontWeight.w500),
           ),
-          TextSpan(text: ' Java and Android developer at Qualium Systems Ltd.'),
+          TextSpan(text: ' Java and Android developer at '),
+          TextSpan(
+            text: 'Qualium Systems Ltd.',
+            style: baseTextStyle.copyWith(decoration: TextDecoration.underline),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () => js.context
+                  .callMethod('open', ['https://www.qualium-systems.com/']),
+          ),
           TextSpan(text: '\n'),
           TextSpan(
             text: '[2021 - present]',
             style: baseTextStyle.copyWith(fontWeight: FontWeight.w500),
           ),
-          TextSpan(text: ' Android Engineer at N-ix')
+          TextSpan(text: ' Android Engineer at '),
+          TextSpan(
+            text: 'N-ix',
+            style: baseTextStyle.copyWith(decoration: TextDecoration.underline),
+            recognizer: TapGestureRecognizer()
+              ..onTap = () =>
+                  js.context.callMethod('open', ['https://www.n-ix.com/']),
+          ),
         ],
         style: baseTextStyle,
       ),

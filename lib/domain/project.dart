@@ -5,6 +5,7 @@ class Project {
   final String imageUri;
   final String description;
   final String link;
+  final String stack;
   final Color backgroundColor;
 
   const Project({
@@ -13,5 +14,6 @@ class Project {
     this.description,
     this.link,
     this.backgroundColor,
+    this.stack,
   });
 }
